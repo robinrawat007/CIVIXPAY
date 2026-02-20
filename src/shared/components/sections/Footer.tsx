@@ -20,6 +20,9 @@ const Footer = () => {
                         src="/assets/fullLogo.png"
                         alt="CivixPay - Secure Digital Gateway for Citizen Services"
                         loading="lazy"
+                        decoding="async"
+                        width="220"
+                        height="40"
                         className="h-8 sm:h-10 w-auto object-contain"
                     />
 
@@ -31,9 +34,9 @@ const Footer = () => {
 
                 {/* Navigation Links */}
                 <div>
-                    <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-5 sm:mb-8">
+                    <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-5 sm:mb-8">
                         Navigation
-                    </h4>
+                    </h3>
 
                     <ul className="space-y-4 text-sm font-bold text-gray-600">
                         {[
@@ -59,9 +62,9 @@ const Footer = () => {
 
                 {/* Support */}
                 <div>
-                    <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-5 sm:mb-8">
+                    <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-5 sm:mb-8">
                         Resources
-                    </h4>
+                    </h3>
 
                     <ul className="space-y-4 text-sm font-bold text-gray-600">
                         <li className="hover:text-emerald-600 cursor-pointer transition-colors">Help Center</li>
@@ -72,9 +75,9 @@ const Footer = () => {
 
                 {/* Contact */}
                 <div>
-                    <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-5 sm:mb-8">
+                    <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-5 sm:mb-8">
                         Official Desk
-                    </h4>
+                    </h3>
 
                     <div className="space-y-4 text-sm font-bold text-gray-600">
                         <div className="flex items-center gap-3">
@@ -99,7 +102,7 @@ const Footer = () => {
             <div className="border-t border-gray-100 py-8 sm:py-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6">
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
-                        © {currentYear} CivixPay India. Secure Digital Gateway.
+                        (c) {currentYear} CivixPay India. Secure Digital Gateway.
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-[10px] font-black uppercase tracking-widest text-gray-400">
@@ -114,3 +117,4 @@ const Footer = () => {
 };
 
 export default React.memo(Footer);
+

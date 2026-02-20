@@ -97,9 +97,9 @@ const Counter = ({
                     <p className="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-1">
                         Live Stats
                     </p>
-                    <h4 className="text-2xl sm:text-3xl font-black text-gray-950">
+                    <p className="text-2xl sm:text-3xl font-black text-gray-950">
                         {`${count.toLocaleString()}+`}
-                    </h4>
+                    </p>
                 </div>
             </div>
             <p className="mt-4 sm:mt-6 text-xs sm:text-sm font-black text-gray-700 uppercase tracking-wider">{label}</p>

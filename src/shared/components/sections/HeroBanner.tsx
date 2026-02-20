@@ -48,7 +48,7 @@ const HeroBanner = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <span className="inline-block px-3 sm:px-4 py-1.5 mb-6 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] bg-emerald-600 text-white rounded-full shadow-xl shadow-emerald-500/20">
+                        <span className="inline-block px-3 sm:px-4 py-1.5 mb-6 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] bg-emerald-700 text-white rounded-full shadow-xl shadow-emerald-500/20">
                             Digital Governance 2.0
                         </span>
 
@@ -106,7 +106,6 @@ const HeroBanner = () => {
                                 className="w-full h-full object-cover opacity-60 transition-all duration-1000 group-hover:scale-110 group-hover:rotate-1"
                                 alt="CivixPay Digital Governance Dashboard - Secure and Transparent"
                                 loading="eager"
-                                fetchPriority="high"
                                 decoding="async"
                                 width="800"
                                 height="450"
@@ -114,7 +113,7 @@ const HeroBanner = () => {
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <motion.span
                                     whileHover={{ scale: 1.1 }}
-                                    className="px-6 py-3 bg-emerald-600/90 backdrop-blur-md text-white rounded-2xl font-black uppercase tracking-tighter text-sm shadow-2xl shadow-emerald-500/40"
+                                    className="px-6 py-3 bg-emerald-800/95 backdrop-blur-md text-white rounded-2xl font-black uppercase tracking-tighter text-sm shadow-2xl shadow-emerald-500/40"
                                 >
                                     Systems Operational
                                 </motion.span>

@@ -22,10 +22,21 @@ const GovernmentLogos = () => {
             </div>
 
             {/* Marquee Container */}
-            <div className="flex relative items-center">
+            <div className="relative">
                 {/* Gradient Masks */}
-                <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 lg:w-32 bg-gradient-to-r from-[#fafdfb] to-transparent z-10"></div>
-                <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 lg:w-32 bg-gradient-to-l from-[#fafdfb] to-transparent z-10"></div>
+                <div className="hidden md:block absolute left-0 top-0 bottom-0 w-12 sm:w-24 lg:w-32 bg-gradient-to-r from-[#fafdfb] to-transparent z-10"></div>
+                <div className="hidden md:block absolute right-0 top-0 bottom-0 w-12 sm:w-24 lg:w-32 bg-gradient-to-l from-[#fafdfb] to-transparent z-10"></div>
+
+                <div className="md:hidden flex flex-wrap justify-center gap-2 px-4">
+                    {departments.map((department) => (
+                        <span
+                            key={`mobile-${department}`}
+                            className="inline-flex items-center px-3 py-2 rounded-full bg-white/80 border border-emerald-100 text-[10px] font-black uppercase tracking-wider text-gray-500"
+                        >
+                            {department}
+                        </span>
+                    ))}
+                </div>
 
                 <motion.div
                     animate={prefersReducedMotion ? { x: 0 } : { x: ["0%", "-50%"] }}
@@ -34,7 +45,7 @@ const GovernmentLogos = () => {
                         repeat: prefersReducedMotion ? 0 : Infinity,
                         ease: "linear"
                     }}
-                    className="flex items-center gap-4 sm:gap-6 whitespace-nowrap px-6 sm:px-10"
+                    className="hidden md:flex items-center gap-4 sm:gap-6 whitespace-nowrap px-6 sm:px-10"
                 >
                     {chipItems.map((department, i) => (
                         <span

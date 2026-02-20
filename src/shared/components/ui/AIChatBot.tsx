@@ -13,7 +13,7 @@ const AIChatBot = () => {
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        className="mb-3 sm:mb-4 w-[calc(100vw-2rem)] max-w-[350px] bg-white/90 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-[24px] sm:rounded-[32px] overflow-hidden"
+                        className="mb-3 sm:mb-4 w-[min(350px,calc(100vw-2rem))] bg-white/90 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-[24px] sm:rounded-[32px] overflow-hidden"
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-emerald-600 to-green-600 p-5 text-white flex items-center justify-between">

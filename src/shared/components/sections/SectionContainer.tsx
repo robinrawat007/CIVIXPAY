@@ -19,7 +19,7 @@ const SectionContainer = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className={`section-cv max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 lg:py-24 relative z-10 ${className}`}
+            className={`section-cv w-full min-w-0 max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 lg:py-24 relative z-10 overflow-x-clip ${className}`}
         >
             {children}
 

@@ -30,7 +30,6 @@ const BlogCard = ({
                     alt={title}
                     loading="lazy"
                     decoding="async"
-                    fetchPriority="low"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     width="1200"
                     height="800"

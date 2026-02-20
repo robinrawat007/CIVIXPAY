@@ -59,7 +59,7 @@ const MainLayout = ({
     useEventListener("mousemove", onMouseMove, window, { passive: true });
 
     return (
-        <div className="flex mesh-bg min-h-screen relative overflow-hidden">
+        <div className="flex mesh-bg min-h-screen relative overflow-x-clip">
             {/* Interactive Aura Background - Hidden on mobile for performance */}
             <motion.div
                 style={{
@@ -76,7 +76,7 @@ const MainLayout = ({
             <Sidebar />
 
             <main
-                className={`flex-1 px-4 sm:px-6 pb-6 relative z-10 transition-all duration-300 ${
+                className={`flex-1 w-full min-w-0 px-4 sm:px-6 pb-6 relative z-10 transition-all duration-300 ${
                     sidebarCollapsed ? "lg:pl-24" : "lg:pl-[260px]"
                 }`}
             >

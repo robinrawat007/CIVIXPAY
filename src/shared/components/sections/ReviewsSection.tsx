@@ -64,7 +64,7 @@ const ReviewsSection = () => {
                                 className="w-14 h-14 rounded-2xl object-cover shadow-lg group-hover:rotate-6 transition-transform"
                             />
                             <div>
-                                <h4 className="font-black text-gray-900 leading-none">{item.name}</h4>
+                                <h3 className="font-black text-gray-900 leading-none">{item.name}</h3>
                                 <p className="text-xs font-bold text-gray-400 mt-1 uppercase tracking-wider">{item.role}</p>
                             </div>
                         </div>
