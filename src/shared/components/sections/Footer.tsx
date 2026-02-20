@@ -8,11 +8,11 @@ const Footer = () => {
     const currentYear = useMemo(() => new Date().getFullYear(), []);
 
     return (
-        <footer className="relative mt-32 border-t border-white/50 bg-white/60 backdrop-blur-lg">
+        <footer className="relative mt-16 sm:mt-24 lg:mt-32 border-t border-white/50 bg-white/60 backdrop-blur-lg">
             {/* Subtle Gradient Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent"></div>
 
-            <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
 
                 {/* Brand */}
                 <div className="space-y-6">
@@ -20,7 +20,7 @@ const Footer = () => {
                         src="/assets/fullLogo.png"
                         alt="CivixPay - Secure Digital Gateway for Citizen Services"
                         loading="lazy"
-                        className="h-10 w-auto object-contain"
+                        className="h-8 sm:h-10 w-auto object-contain"
                     />
 
                     <p className="text-gray-500 text-sm font-medium leading-relaxed">
@@ -31,7 +31,7 @@ const Footer = () => {
 
                 {/* Navigation Links */}
                 <div>
-                    <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-8">
+                    <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-5 sm:mb-8">
                         Navigation
                     </h4>
 
@@ -59,7 +59,7 @@ const Footer = () => {
 
                 {/* Support */}
                 <div>
-                    <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-8">
+                    <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-5 sm:mb-8">
                         Resources
                     </h4>
 
@@ -72,7 +72,7 @@ const Footer = () => {
 
                 {/* Contact */}
                 <div>
-                    <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-8">
+                    <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-5 sm:mb-8">
                         Official Desk
                     </h4>
 
@@ -96,13 +96,13 @@ const Footer = () => {
             </div>
 
             {/* Bottom Strip */}
-            <div className="border-t border-gray-100 py-10">
-                <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="border-t border-gray-100 py-8 sm:py-10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6">
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
                         © {currentYear} CivixPay India. Secure Digital Gateway.
                     </p>
 
-                    <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest text-gray-400">
+                    <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-[10px] font-black uppercase tracking-widest text-gray-400">
                         <span className="hover:text-emerald-600 cursor-pointer transition-colors">Privacy Architecture</span>
                         <span className="hover:text-emerald-600 cursor-pointer transition-colors">Service Terms</span>
                     </div>

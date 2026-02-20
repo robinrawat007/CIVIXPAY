@@ -20,10 +20,10 @@ const BlogsSection = () => {
         <SectionContainer id="blogs">
 
             {/* Heading */}
-            <div className="flex justify-between items-center mb-10">
+            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-8 sm:mb-10">
 
                 <div>
-                    <h2 className="text-3xl font-bold text-gray-900">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
                         Latest Updates & Blogs
                     </h2>
 
@@ -33,7 +33,7 @@ const BlogsSection = () => {
                     </p>
                 </div>
 
-                <button className="text-emerald-600 font-medium hover:underline">
+                <button className="self-start sm:self-auto text-emerald-600 font-medium hover:underline">
                     View All →
                 </button>
 

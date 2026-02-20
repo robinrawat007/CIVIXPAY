@@ -51,7 +51,11 @@ const MainLayout = ({
 
             <Sidebar />
 
-            <main className="flex-1 px-6 pb-6 relative z-10 transition-all duration-300 pl-24">
+            <main
+                className={`flex-1 px-4 sm:px-6 pb-6 relative z-10 transition-all duration-300 ${
+                    sidebarCollapsed ? "lg:pl-24" : "lg:pl-[260px]"
+                }`}
+            >
                 <div className="max-w-7xl mx-auto">
                     <HeaderBar />
                     <div className="pt-2">

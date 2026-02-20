@@ -6,14 +6,14 @@ const AIChatBot = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        className="mb-4 w-[350px] bg-white/90 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-[32px] overflow-hidden"
+                        className="mb-3 sm:mb-4 w-[calc(100vw-2rem)] max-w-[350px] bg-white/90 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-[24px] sm:rounded-[32px] overflow-hidden"
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-emerald-600 to-green-600 p-5 text-white flex items-center justify-between">
@@ -32,7 +32,7 @@ const AIChatBot = () => {
                         </div>
 
                         {/* Content */}
-                        <div className="h-80 p-6 space-y-4 overflow-y-auto">
+                        <div className="h-72 sm:h-80 p-4 sm:p-6 space-y-4 overflow-y-auto">
                             <div className="flex gap-3">
                                 <div className="w-8 h-8 bg-emerald-100 text-emerald-600 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-xs uppercase">AI</div>
                                 <div className="bg-gray-100 p-3 rounded-2xl rounded-tl-sm text-sm text-gray-700">
@@ -42,7 +42,7 @@ const AIChatBot = () => {
                         </div>
 
                         {/* Input */}
-                        <div className="p-4 border-t border-gray-100 flex gap-2">
+                        <div className="p-3 sm:p-4 border-t border-gray-100 flex gap-2">
                             <input
                                 type="text"
                                 placeholder="Ask about a ticket..."
@@ -60,11 +60,11 @@ const AIChatBot = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="bg-gradient-to-br from-emerald-600 to-green-600 text-white p-4 rounded-2xl shadow-xl shadow-emerald-200 flex items-center gap-3 font-bold relative group"
+                className="bg-gradient-to-br from-emerald-600 to-green-600 text-white p-3.5 sm:p-4 rounded-2xl shadow-xl shadow-emerald-200 flex items-center gap-2 sm:gap-3 font-bold relative group"
             >
                 <div className="absolute inset-0 rounded-2xl bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-500 origin-center"></div>
                 <MessageSquare size={22} className="relative z-10" />
-                <span className="relative z-10 pr-1">AI Assistant</span>
+                <span className="relative z-10 pr-1 hidden sm:inline">AI Assistant</span>
 
                 {/* Pulse Indicator */}
                 <span className="absolute -top-1 -right-1 flex h-4 w-4">

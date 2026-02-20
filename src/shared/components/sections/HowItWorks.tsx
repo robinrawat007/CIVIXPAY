@@ -85,22 +85,22 @@ const HowItWorks = () => {
     return (
         <SectionContainer id="how-it-works" className="relative">
             {/* Heading */}
-            <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 lg:mb-20">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    className="text-4xl font-black text-gray-900"
+                    className="text-3xl sm:text-4xl font-black text-gray-900"
                 >
                     How To Use <span className="text-emerald-600">CivixPay</span>
                 </motion.h2>
 
-                <p className="text-gray-500 mt-4 text-lg font-medium">
+                <p className="text-gray-500 mt-4 text-base sm:text-lg font-medium">
                     Our process is engineered for speed, security, and absolute transparency.
                 </p>
             </div>
 
             {/* Steps */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8">
                 {steps.map((step, index) => {
                     const Icon = step.icon;
                     const styles = COLOR_MAP[step.color] || COLOR_MAP.emerald;
@@ -113,10 +113,10 @@ const HowItWorks = () => {
                             transition={{ duration: 0.5, delay: index * 0.15 }}
                             viewport={{ once: true }}
                             whileHover={{ y: -10, scale: 1.02 }}
-                            className={`relative bg-white/80 backdrop-blur-lg border-2 border-gray-100/50 rounded-[40px] p-8 text-center shadow-2xl transition-all duration-500 ${styles.cardShadow}`}
+                            className={`relative bg-white/80 backdrop-blur-lg border-2 border-gray-100/50 rounded-[28px] sm:rounded-[40px] p-5 sm:p-8 text-center shadow-2xl transition-all duration-500 ${styles.cardShadow}`}
                         >
                             {/* Step Number Badge */}
-                            <div className={`absolute top-6 right-8 text-[40px] font-black leading-none transition-colors ${styles.badge} ${styles.hoverBadge}`}>
+                            <div className={`absolute top-5 sm:top-6 right-5 sm:right-8 text-[32px] sm:text-[40px] font-black leading-none transition-colors ${styles.badge} ${styles.hoverBadge}`}>
                                 0{index + 1}
                             </div>
 

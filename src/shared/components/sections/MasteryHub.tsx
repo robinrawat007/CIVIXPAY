@@ -45,7 +45,7 @@ const MasteryHub = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
 
             <div className="relative z-10">
-                <div className="text-center mb-16">
+                <div className="text-center mb-10 sm:mb-16">
                     <motion.span
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
@@ -53,7 +53,7 @@ const MasteryHub = () => {
                     >
                         Education & Sustainability
                     </motion.span>
-                    <h2 className="text-4xl font-black text-gray-900 tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">
                         The <span className="text-emerald-600">Civix Mastery</span> Hub
                     </h2>
                     <p className="mt-4 text-gray-500 font-medium max-w-2xl mx-auto">
@@ -61,7 +61,7 @@ const MasteryHub = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8">
                     {items.map((item, i) => (
                         <motion.div
                             key={i}
@@ -69,14 +69,14 @@ const MasteryHub = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1 }}
                             viewport={{ once: true }}
-                            className="bg-white/40 backdrop-blur-md border border-white/60 p-8 rounded-[40px] hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 group/card"
+                            className="bg-white/40 backdrop-blur-md border border-white/60 p-5 sm:p-8 rounded-[28px] sm:rounded-[40px] hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 group/card"
                         >
                             <div className={`w-14 h-14 ${item.bg} ${item.color} rounded-2xl flex items-center justify-center mb-6 group-hover/card:scale-110 group-hover/card:rotate-3 transition-transform duration-500`}>
                                 <item.icon size={28} />
                             </div>
 
                             <div className="space-y-1">
-                                <h3 className="text-3xl font-black text-gray-900 tabular-nums">
+                                <h3 className="text-2xl sm:text-3xl font-black text-gray-900 tabular-nums">
                                     {item.value}
                                 </h3>
                                 <p className="text-sm font-bold text-gray-600">

@@ -65,11 +65,11 @@ const Counter = ({ value, label, icon: Icon, delay = 0, color = "emerald" }: { v
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay }}
             viewport={{ once: true }}
-            className={`flex-1 bg-white/80 backdrop-blur-lg border border-white/40 p-8 rounded-[32px] shadow-2xl transition-all duration-500 ${styles.text}`}
+            className={`flex-1 bg-white/80 backdrop-blur-lg border border-white/40 p-5 sm:p-8 rounded-[24px] sm:rounded-[32px] shadow-2xl transition-all duration-500 ${styles.text}`}
         >
             <div className="flex items-start justify-between">
                 <div className="relative">
-                    <div className={`p-4 ${styles.bg} rounded-2xl text-white shadow-xl ${styles.shadow} group-hover:scale-110 transition-transform relative z-10`}>
+                    <div className={`p-3 sm:p-4 ${styles.bg} rounded-2xl text-white shadow-xl ${styles.shadow} group-hover:scale-110 transition-transform relative z-10`}>
                         <Icon size={24} />
                     </div>
                     <motion.div
@@ -82,12 +82,12 @@ const Counter = ({ value, label, icon: Icon, delay = 0, color = "emerald" }: { v
                     <p className="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-1">
                         Live Stats
                     </p>
-                    <h4 className="text-3xl font-black text-gray-950">
+                    <h4 className="text-2xl sm:text-3xl font-black text-gray-950">
                         {value.includes("₹") ? `₹${count.toLocaleString()}+` : `${count.toLocaleString()}+`}
                     </h4>
                 </div>
             </div>
-            <p className="mt-6 text-sm font-black text-gray-700 uppercase tracking-wider">{label}</p>
+            <p className="mt-4 sm:mt-6 text-xs sm:text-sm font-black text-gray-700 uppercase tracking-wider">{label}</p>
         </motion.div>
     );
 };

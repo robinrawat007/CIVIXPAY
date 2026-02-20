@@ -55,7 +55,7 @@ const TrustBadges = () => {
 
             {/* Heading */}
             <div className="text-center max-w-2xl mx-auto">
-                <h2 className="text-3xl font-bold text-gray-900">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
                     Trusted & Secure Platform
                 </h2>
 
@@ -66,7 +66,7 @@ const TrustBadges = () => {
             </div>
 
             {/* Badges */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mt-10 sm:mt-12">
 
                 {badges.map((badge, i) => {
                     const Icon = badge.icon;
@@ -75,7 +75,7 @@ const TrustBadges = () => {
                         <motion.div
                             key={i}
                             {...getBadgeVariants(i)}
-                            className="bg-white/70 backdrop-blur-xl border border-white/60 rounded-[32px] p-8 text-center shadow-2xl shadow-emerald-500/5 group hover:shadow-emerald-500/10 transition-all duration-500"
+                            className="bg-white/70 backdrop-blur-xl border border-white/60 rounded-[24px] sm:rounded-[32px] p-5 sm:p-8 text-center shadow-2xl shadow-emerald-500/5 group hover:shadow-emerald-500/10 transition-all duration-500"
                         >
                             <div className={`w-16 h-16 mx-auto flex items-center justify-center rounded-2xl ${badge.bg} ${badge.color} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
                                 <Icon size={28} />
