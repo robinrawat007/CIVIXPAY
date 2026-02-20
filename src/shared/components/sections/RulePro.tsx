@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertCircle, ShieldCheck, ArrowRight } from "lucide-react";
 import SectionContainer from "./SectionContainer";
@@ -32,20 +32,8 @@ const ACCENT_MAP: Record<string, { bg: string, shadow: string, text: string, hov
     }
 };
 
-import { RuleProSkeleton } from "../ui/PageSkeletons";
-
-import useSafeTimeout from "../../hooks/useSafeTimeout";
-
 const RulePro = () => {
     const [selected, setSelected] = useState(violations[0]);
-    const [isLoading, setIsLoading] = useState(true);
-    const { setSafeTimeout } = useSafeTimeout();
-
-    useEffect(() => {
-        setSafeTimeout(() => setIsLoading(false), 2000);
-    }, [setSafeTimeout]);
-
-    if (isLoading) return <RuleProSkeleton />;
 
     return (
         <SectionContainer id="rule-pro" className="relative">
@@ -95,7 +83,7 @@ const RulePro = () => {
                                     const accent = ACCENT_MAP[selected.accent] || ACCENT_MAP.emerald;
                                     return (
                                         <>
-                                            <div className={`absolute -top-4 sm:-top-6 -right-4 sm:-right-6 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 ${accent.bg} rounded-full flex items-center justify-center text-2xl sm:text-3xl lg:text-4xl shadow-2xl text-white`}>
+                                            <div className={`absolute top-3 right-3 sm:-top-6 sm:-right-6 w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 ${accent.bg} rounded-full flex items-center justify-center text-xl sm:text-3xl lg:text-4xl shadow-2xl text-white`}>
                                                 {selected.icon}
                                             </div>
 
@@ -123,7 +111,7 @@ const RulePro = () => {
                                                     </p>
                                                 </div>
 
-                                                <button className="w-full bg-zinc-900 hover:bg-black text-white font-black py-5 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-xl shadow-zinc-900/20 group">
+                                                <button className="w-full bg-zinc-900 hover:bg-black text-white font-black py-4 sm:py-5 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-xl shadow-zinc-900/20 group text-xs sm:text-sm tracking-wide">
                                                     GET MASTERY CERTIFICATE
                                                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                                 </button>
@@ -138,7 +126,7 @@ const RulePro = () => {
                         {(() => {
                             const accent = ACCENT_MAP[selected.accent] || ACCENT_MAP.emerald;
                             return (
-                                <div className={`absolute -bottom-4 right-4 sm:-bottom-8 sm:right-8 lg:-bottom-10 lg:right-10 flex items-center gap-2 sm:gap-3 ${accent.bg} text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl font-black text-[10px] sm:text-xs shadow-2xl`}>
+                                <div className={`absolute -bottom-4 right-4 sm:-bottom-8 sm:right-8 lg:-bottom-10 lg:right-10 flex items-center gap-2 sm:gap-3 ${accent.bg} text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl font-black text-[10px] sm:text-xs shadow-2xl whitespace-nowrap`}>
                                     <ShieldCheck size={18} />
                                     ACT 2024 COMPLIANT
                                 </div>

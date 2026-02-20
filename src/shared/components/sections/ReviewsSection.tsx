@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SectionContainer from "./SectionContainer";
 import { Star, CheckCircle } from "lucide-react";
-import { ReviewsSkeleton } from "../ui/PageSkeletons";
 
 const reviews = [
     {
@@ -30,19 +29,7 @@ const reviews = [
         paid: "₹1,200"
     }
 ];
-
-import useSafeTimeout from "../../hooks/useSafeTimeout";
-
 const ReviewsSection = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const { setSafeTimeout } = useSafeTimeout();
-
-    useEffect(() => {
-        setSafeTimeout(() => setIsLoading(false), 1800);
-    }, [setSafeTimeout]);
-
-    if (isLoading) return <ReviewsSkeleton />;
-
     return (
         <SectionContainer id="reviews" className="relative overflow-hidden">
             <div className="text-center mb-10 sm:mb-16">
@@ -67,7 +54,15 @@ const ReviewsSection = () => {
                         className="p-5 sm:p-8 bg-white/70 backdrop-blur-xl border border-white/50 rounded-[28px] sm:rounded-[40px] shadow-2xl shadow-emerald-500/5 group"
                     >
                         <div className="flex items-center gap-4 mb-6">
-                            <img src={item.avatar} alt={item.name} className="w-14 h-14 rounded-2xl object-cover shadow-lg group-hover:rotate-6 transition-transform" />
+                            <img
+                                src={item.avatar}
+                                alt={item.name}
+                                loading="lazy"
+                                decoding="async"
+                                width="56"
+                                height="56"
+                                className="w-14 h-14 rounded-2xl object-cover shadow-lg group-hover:rotate-6 transition-transform"
+                            />
                             <div>
                                 <h4 className="font-black text-gray-900 leading-none">{item.name}</h4>
                                 <p className="text-xs font-bold text-gray-400 mt-1 uppercase tracking-wider">{item.role}</p>

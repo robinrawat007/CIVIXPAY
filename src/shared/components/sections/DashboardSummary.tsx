@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import SectionContainer from "./SectionContainer";
 import { ShieldCheck, Users, Activity } from "lucide-react";
@@ -27,10 +27,23 @@ const COLOR_MAP: Record<string, { bg: string, shadow: string, pulse: string, tex
     }
 };
 
-const Counter = ({ value, label, icon: Icon, delay = 0, color = "emerald" }: { value: string, label: string, icon: any, delay?: number, color?: string }) => {
+const Counter = ({
+    value,
+    label,
+    icon: Icon,
+    delay = 0,
+    color = "emerald"
+}: {
+    value: string,
+    label: string,
+    icon: React.ElementType,
+    delay?: number,
+    color?: string
+}) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
     const [count, setCount] = useState(0);
+    const prefersReducedMotion = useReducedMotion();
     const styles = COLOR_MAP[color] || COLOR_MAP.emerald;
 
     useEffect(() => {
@@ -72,18 +85,20 @@ const Counter = ({ value, label, icon: Icon, delay = 0, color = "emerald" }: { v
                     <div className={`p-3 sm:p-4 ${styles.bg} rounded-2xl text-white shadow-xl ${styles.shadow} group-hover:scale-110 transition-transform relative z-10`}>
                         <Icon size={24} />
                     </div>
-                    <motion.div
-                        animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className={`absolute inset-0 ${styles.pulse} rounded-2xl blur-md z-0`}
-                    />
+                    {!prefersReducedMotion && (
+                        <motion.div
+                            animate={{ scale: [1, 1.25, 1], opacity: [0.45, 0, 0.45] }}
+                            transition={{ duration: 2.2, repeat: Infinity }}
+                            className={`absolute inset-0 ${styles.pulse} rounded-2xl blur-md z-0`}
+                        />
+                    )}
                 </div>
                 <div className="text-right">
                     <p className="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-1">
                         Live Stats
                     </p>
                     <h4 className="text-2xl sm:text-3xl font-black text-gray-950">
-                        {value.includes("₹") ? `₹${count.toLocaleString()}+` : `${count.toLocaleString()}+`}
+                        {`${count.toLocaleString()}+`}
                     </h4>
                 </div>
             </div>

@@ -102,13 +102,11 @@ export const ReviewsSkeleton = () => (
 );
 
 export const PageSkeleton = () => (
-    <div className="space-y-0">
-        <HeroSkeleton />
-        <SearchSkeleton />
-        <StatsSkeleton />
-        <HowItWorksSkeleton />
-        <RuleProSkeleton />
-        <ReviewsSkeleton />
-        <BlogsSkeleton />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 lg:py-24">
+        <div className="grid gap-5 sm:gap-8">
+            <Skeleton className="h-10 w-40 rounded-full" />
+            <Skeleton className="h-16 w-full max-w-3xl" />
+            <Skeleton className="h-[260px] sm:h-[360px] w-full rounded-[24px] sm:rounded-[40px]" />
+        </div>
     </div>
 );

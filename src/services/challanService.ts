@@ -13,8 +13,6 @@ const MOCK_STATS: DashboardStats = {
 
 export const challanService = {
     getDashboardStats: async (): Promise<DashboardStats> => {
-        // Simulate API delay
-        await new Promise((resolve) => setTimeout(resolve, 1500));
         return MOCK_STATS;
     },
 };

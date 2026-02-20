@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SectionContainer
     from "./SectionContainer";
 
@@ -67,21 +67,7 @@ const steps = [
         color: "violet"
     }
 ];
-
-import { HowItWorksSkeleton } from "../ui/PageSkeletons";
-
-import useSafeTimeout from "../../hooks/useSafeTimeout";
-
 const HowItWorks = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const { setSafeTimeout } = useSafeTimeout();
-
-    useEffect(() => {
-        setSafeTimeout(() => setIsLoading(false), 1000);
-    }, [setSafeTimeout]);
-
-    if (isLoading) return <HowItWorksSkeleton />;
-
     return (
         <SectionContainer id="how-it-works" className="relative">
             {/* Heading */}

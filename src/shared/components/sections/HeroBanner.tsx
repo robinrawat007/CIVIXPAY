@@ -1,30 +1,42 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import React from "react";
 import SectionContainer from "./SectionContainer";
 
 const HeroBanner = () => {
+    const prefersReducedMotion = useReducedMotion();
+    const heroImageBase =
+        "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=70";
+
     return (
         <div className="relative overflow-hidden">
             {/* Animated Decorative Shapes */}
             <motion.div
-                animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 90, 0],
-                    x: [0, 50, 0],
-                    y: [0, 30, 0]
-                }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] bg-emerald-400/10 blur-[100px] rounded-full z-0"
+                animate={
+                    prefersReducedMotion
+                        ? { opacity: 1 }
+                        : {
+                            scale: [1, 1.2, 1],
+                            rotate: [0, 90, 0],
+                            x: [0, 50, 0],
+                            y: [0, 30, 0]
+                        }
+                }
+                transition={{ duration: 20, repeat: prefersReducedMotion ? 0 : Infinity, ease: "linear" }}
+                className="absolute top-[-10%] left-[-5%] w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] bg-emerald-400/10 blur-[100px] rounded-full z-0 hidden md:block"
             />
             <motion.div
-                animate={{
-                    scale: [1.2, 1, 1.2],
-                    rotate: [0, -90, 0],
-                    x: [0, -30, 0],
-                    y: [0, 50, 0]
-                }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-green-400/10 blur-[100px] rounded-full z-0"
+                animate={
+                    prefersReducedMotion
+                        ? { opacity: 1 }
+                        : {
+                            scale: [1.2, 1, 1.2],
+                            rotate: [0, -90, 0],
+                            x: [0, -30, 0],
+                            y: [0, 50, 0]
+                        }
+                }
+                transition={{ duration: 25, repeat: prefersReducedMotion ? 0 : Infinity, ease: "linear" }}
+                className="absolute bottom-[-10%] right-[-5%] w-[360px] h-[360px] lg:w-[500px] lg:h-[500px] bg-green-400/10 blur-[100px] rounded-full z-0 hidden md:block"
             />
 
             <SectionContainer className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 py-12 sm:py-16 lg:py-24 relative z-10">
@@ -86,12 +98,16 @@ const HeroBanner = () => {
                     className="flex-1 relative w-full"
                 >
                     <div className="relative z-10 p-2 sm:p-4 bg-white/40 backdrop-blur-lg rounded-[24px] sm:rounded-[40px] border border-white/60 shadow-3xl">
-                        <div className="bg-gray-900 aspect-video rounded-[32px] flex items-center justify-center overflow-hidden shadow-2xl relative group">
+                        <div className="bg-gray-900 aspect-video rounded-[18px] sm:rounded-[32px] flex items-center justify-center overflow-hidden shadow-2xl relative group">
                             <img
-                                src="https://images.unsplash.com/photo-1557683316-973673baf926"
+                                src={`${heroImageBase}&w=1280`}
+                                srcSet={`${heroImageBase}&w=640 640w, ${heroImageBase}&w=960 960w, ${heroImageBase}&w=1280 1280w`}
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
                                 className="w-full h-full object-cover opacity-60 transition-all duration-1000 group-hover:scale-110 group-hover:rotate-1"
                                 alt="CivixPay Digital Governance Dashboard - Secure and Transparent"
                                 loading="eager"
+                                fetchPriority="high"
+                                decoding="async"
                                 width="800"
                                 height="450"
                             />

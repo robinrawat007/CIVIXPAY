@@ -5,6 +5,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    text-rendering: optimizeLegibility;
   }
 
   /* Premium Mesh Background (Green & Black Version) */
@@ -15,6 +16,13 @@
       radial-gradient(at 50% 0%, hsla(142,76%,96%,1) 0, transparent 50%), 
       radial-gradient(at 100% 0%, hsla(168,80%,96%,1) 0, transparent 50%);
     background-attachment: fixed;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
   }
 
   /* Custom Glass Scrollbar */
@@ -63,4 +71,15 @@
 /* Global scrollbar hiding for sidebar container if specific */
 aside::-webkit-scrollbar {
   display: none !important;
+}
+
+.section-cv {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
+
+@media (max-width: 1023px) {
+  .mesh-bg {
+    background-attachment: scroll;
+  }
 }

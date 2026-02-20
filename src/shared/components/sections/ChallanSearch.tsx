@@ -17,7 +17,7 @@ const ChallanSearch = () => {
             >
                 {/* High-Tech Background Elements */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
-                <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full"></div>
+                <div className="hidden md:block absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full"></div>
 
                 <div className="relative z-10 max-w-4xl mx-auto text-center">
                     <motion.div
@@ -29,7 +29,7 @@ const ChallanSearch = () => {
                         <span className="text-[10px] font-black uppercase tracking-widest">Secure Verification Portal</span>
                     </motion.div>
 
-                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-gray-900 mb-4 sm:mb-6 tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6 tracking-tight">
                         Search for a <br />
                         <span className="text-emerald-600">Vehicle Challan</span>
                     </h2>

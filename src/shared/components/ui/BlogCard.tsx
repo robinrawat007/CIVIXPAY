@@ -29,6 +29,11 @@ const BlogCard = ({
                     src={image}
                     alt={title}
                     loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    width="1200"
+                    height="800"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[10px] font-black text-emerald-600 uppercase tracking-widest shadow-sm">
