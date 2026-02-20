@@ -10,7 +10,6 @@ import {
     Search,
     X
 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
 import SidebarLogo from "./SidebarLogo";
 import { useStore } from "@/store/useStore";
 
@@ -46,20 +45,20 @@ const SidebarItem = React.memo(
         };
 
         return (
-            <div className="relative group" onClick={handleSelect}>
-                <motion.div
-                    whileHover={{ x: 6, backgroundColor: "rgba(5, 150, 105, 0.05)" }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            <div className="relative group">
+                <button
+                    type="button"
+                    onClick={handleSelect}
                     className="
+                        w-full
                         flex items-center gap-3
                         px-4 py-3
                         rounded-2xl
                         cursor-pointer
-                        transition-all
+                        transition-all duration-200
                         relative overflow-hidden
                         group/item
-                        text-gray-600 hover:text-emerald-700
+                        text-gray-600 hover:text-emerald-700 hover:bg-emerald-50/70 hover:translate-x-1
                     "
                 >
                     <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 via-emerald-600/5 to-emerald-600/0 -translate-x-full group-hover/item:translate-x-full transition-transform duration-1000"></div>
@@ -70,7 +69,7 @@ const SidebarItem = React.memo(
                             {label}
                         </span>
                     )}
-                </motion.div>
+                </button>
 
                 {showTooltip && collapsed && (
                     <div
@@ -184,11 +183,9 @@ const Sidebar = () => {
 
     return (
         <>
-            <motion.aside
+            <aside
                 ref={desktopSidebarRef}
-                animate={{ width: sidebarCollapsed ? 80 : 260 }}
-                transition={{ duration: 0.22, ease: "easeInOut" }}
-                className="
+                className={`
                     hidden lg:flex
                     h-screen
                     fixed
@@ -205,7 +202,9 @@ const Sidebar = () => {
                     scrollbar-none
                     will-change-[width]
                     shadow-[10px_0_30px_rgba(0,0,0,0.02)]
-                "
+                    transition-[width] duration-200 ease-in-out
+                    ${sidebarCollapsed ? "w-20" : "w-[260px]"}
+                `}
             >
                 <SidebarLogo collapsed={sidebarCollapsed} toggle={toggleSidebar} />
 
@@ -224,80 +223,72 @@ const Sidebar = () => {
                 <div className="p-4 text-center text-[10px] font-bold text-gray-500 border-t border-gray-50 bg-gray-50/30 uppercase tracking-tighter">
                     {sidebarCollapsed ? "v1.2" : "Platform v1.2.4 (Beta)"}
                 </div>
-            </motion.aside>
+            </aside>
 
-            <AnimatePresence>
-                {mobileSidebarOpen && (
-                    <>
-                        <motion.button
-                            type="button"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={closeMobileSidebar}
-                            aria-label="Close sidebar overlay"
-                            className="lg:hidden fixed inset-0 z-[104] bg-black/25 backdrop-blur-[2px]"
-                        />
+            {mobileSidebarOpen && (
+                <>
+                    <button
+                        type="button"
+                        onClick={closeMobileSidebar}
+                        aria-label="Close sidebar overlay"
+                        className="lg:hidden fixed inset-0 z-[104] bg-black/25 backdrop-blur-[2px]"
+                    />
 
-                        <motion.aside
-                            ref={mobileSidebarRef}
-                            initial={{ x: "-100%" }}
-                            animate={{ x: 0 }}
-                            exit={{ x: "-100%" }}
-                            transition={{ duration: 0.25, ease: "easeOut" }}
-                            className="
-                                lg:hidden
-                                fixed
-                                left-0
-                                top-0
-                                bottom-0
-                                w-[280px]
-                                max-w-[85vw]
-                                z-[105]
-                                bg-white/90
-                                backdrop-blur-2xl
-                                border-r border-emerald-100/40
-                                shadow-[12px_0_40px_rgba(0,0,0,0.08)]
-                                flex flex-col
-                            "
-                        >
-                            <div className="p-4 flex items-center justify-between border-b border-emerald-100/40">
-                                <img
-                                    src="/assets/fullLogo.png"
-                                    alt="CivixPay Logo"
-                                    className="h-9 w-auto object-contain"
+                    <aside
+                        ref={mobileSidebarRef}
+                        className="
+                            lg:hidden
+                            fixed
+                            left-0
+                            top-0
+                            bottom-0
+                            w-[280px]
+                            max-w-[85vw]
+                            z-[105]
+                            bg-white/90
+                            backdrop-blur-2xl
+                            border-r border-emerald-100/40
+                            shadow-[12px_0_40px_rgba(0,0,0,0.08)]
+                            flex flex-col
+                        "
+                    >
+                        <div className="p-4 flex items-center justify-between border-b border-emerald-100/40">
+                            <img
+                                src="/assets/fullLogo.png"
+                                alt="CivixPay Logo"
+                                className="h-9 w-auto object-contain"
+                            />
+                            <button
+                                type="button"
+                                onClick={closeMobileSidebar}
+                                data-sidebar-toggle="true"
+                                aria-label="Close sidebar"
+                                className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-gray-900 transition-colors"
+                            >
+                                <X size={18} />
+                            </button>
+                        </div>
+
+                        <nav className="flex-1 px-3 py-6 space-y-1 overflow-y-auto custom-scrollbar no-scrollbar">
+                            {menuItems.map((item) => (
+                                <SidebarItem
+                                    key={`mobile-${item.path}`}
+                                    icon={item.icon}
+                                    label={item.label}
+                                    path={item.path}
+                                    collapsed={false}
+                                    showTooltip={false}
+                                    onSelect={closeMobileSidebar}
                                 />
-                                <button
-                                    onClick={closeMobileSidebar}
-                                    data-sidebar-toggle="true"
-                                    aria-label="Close sidebar"
-                                    className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-gray-900 transition-colors"
-                                >
-                                    <X size={18} />
-                                </button>
-                            </div>
+                            ))}
+                        </nav>
 
-                            <nav className="flex-1 px-3 py-6 space-y-1 overflow-y-auto custom-scrollbar no-scrollbar">
-                                {menuItems.map((item) => (
-                                    <SidebarItem
-                                        key={`mobile-${item.path}`}
-                                        icon={item.icon}
-                                        label={item.label}
-                                        path={item.path}
-                                        collapsed={false}
-                                        showTooltip={false}
-                                        onSelect={closeMobileSidebar}
-                                    />
-                                ))}
-                            </nav>
-
-                            <div className="p-4 text-center text-[10px] font-bold text-gray-500 border-t border-gray-50 bg-gray-50/30 uppercase tracking-tighter">
-                                Platform v1.2.4 (Beta)
-                            </div>
-                        </motion.aside>
-                    </>
-                )}
-            </AnimatePresence>
+                        <div className="p-4 text-center text-[10px] font-bold text-gray-500 border-t border-gray-50 bg-gray-50/30 uppercase tracking-tighter">
+                            Platform v1.2.4 (Beta)
+                        </div>
+                    </aside>
+                </>
+            )}
         </>
     );
 };

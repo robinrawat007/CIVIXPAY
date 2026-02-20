@@ -11,8 +11,8 @@ import SEO from "../../shared/components/ui/SEO";
 import ErrorBoundary from "../../shared/components/ui/ErrorBoundary";
 
 import HeroBanner from "../../shared/components/sections/HeroBanner";
-import DashboardSummary from "../../shared/components/sections/DashboardSummary";
-import ChallanSearch from "../../shared/components/sections/ChallanSearch";
+const ChallanSearch = lazy(() => import("../../shared/components/sections/ChallanSearch"));
+const DashboardSummary = lazy(() => import("../../shared/components/sections/DashboardSummary"));
 
 const HowItWorks = lazy(() => import("../../shared/components/sections/HowItWorks"));
 const ReviewsSection = lazy(() => import("../../shared/components/sections/ReviewsSection"));
@@ -44,8 +44,12 @@ const AppRouter = () => {
                             <MainLayout>
                                 <SEO />
                                 <HeroBanner />
-                                <ChallanSearch />
-                                <DashboardSummary />
+                                <Suspense fallback={<SectionFallback id="search" />}>
+                                    <ChallanSearch />
+                                </Suspense>
+                                <Suspense fallback={<SectionFallback id="stats" />}>
+                                    <DashboardSummary />
+                                </Suspense>
                                 <Suspense fallback={<SectionFallback id="how-it-works" />}>
                                     <HowItWorks />
                                 </Suspense>

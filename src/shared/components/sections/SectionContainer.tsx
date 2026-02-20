@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import React from "react";
 
 type Props = {
@@ -13,19 +12,15 @@ const SectionContainer = ({
     id
 }: Props) => {
     return (
-        <motion.section
+        <section
             id={id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
             className={`section-cv w-full min-w-0 max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 lg:py-24 relative z-10 overflow-x-hidden ${className}`}
         >
             {children}
 
             {/* Subtle Divider Glow */}
             <div className="absolute bottom-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-gray-300/50 to-transparent"></div>
-        </motion.section>
+        </section>
     );
 };
 

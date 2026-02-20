@@ -16,12 +16,36 @@ export default defineConfig({
     cssMinify: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-framer': ['framer-motion'],
-          'vendor-icons': ['lucide-react']
-        }
-      }
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return
+
+          if (
+            id.includes('framer-motion') ||
+            id.includes('motion-dom') ||
+            id.includes('motion-utils')
+          ) {
+            return 'vendor-framer'
+          }
+
+          if (id.includes('lucide-react')) {
+            return 'vendor-icons'
+          }
+
+          if (
+            id.includes('react-router') ||
+            id.includes('@remix-run') ||
+            id.includes('node_modules/react-dom/') ||
+            id.includes('node_modules\\react-dom\\') ||
+            id.includes('node_modules/react/') ||
+            id.includes('node_modules\\react\\') ||
+            id.includes('react/jsx-runtime') ||
+            id.includes('react/jsx-dev-runtime') ||
+            id.includes('scheduler')
+          ) {
+            return 'vendor-react'
+          }
+        },
+      },
     },
     chunkSizeWarningLimit: 600,
     reportCompressedSize: false // Disable for faster builds
