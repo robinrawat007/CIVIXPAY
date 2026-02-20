@@ -5,7 +5,7 @@ import SectionContainer from "./SectionContainer";
 const HeroBanner = () => {
     const prefersReducedMotion = useReducedMotion();
     const heroImageBase =
-        "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=70";
+        "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=60";
 
     return (
         <div className="relative overflow-hidden">
@@ -100,15 +100,16 @@ const HeroBanner = () => {
                     <div className="relative z-10 p-2 sm:p-4 bg-white/40 backdrop-blur-lg rounded-[24px] sm:rounded-[40px] border border-white/60 shadow-3xl">
                         <div className="bg-gray-900 aspect-video rounded-[18px] sm:rounded-[32px] flex items-center justify-center overflow-hidden shadow-2xl relative group">
                             <img
-                                src={`${heroImageBase}&w=1280`}
-                                srcSet={`${heroImageBase}&w=640 640w, ${heroImageBase}&w=960 960w, ${heroImageBase}&w=1280 1280w`}
-                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw"
+                                src={`${heroImageBase}&w=960`}
+                                srcSet={`${heroImageBase}&w=480 480w, ${heroImageBase}&w=768 768w, ${heroImageBase}&w=960 960w`}
+                                sizes="(max-width: 640px) 92vw, (max-width: 1024px) 88vw, 46vw"
                                 className="w-full h-full object-cover opacity-60 transition-all duration-1000 group-hover:scale-110 group-hover:rotate-1"
                                 alt="CivixPay Digital Governance Dashboard - Secure and Transparent"
                                 loading="eager"
+                                fetchPriority="high"
                                 decoding="async"
-                                width="800"
-                                height="450"
+                                width="960"
+                                height="540"
                             />
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <motion.span

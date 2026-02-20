@@ -2,23 +2,24 @@ import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-moti
 import React from "react";
 import Sidebar
     from "../../shared/components/navigation/Sidebar/Sidebar";
-import AIChatBot from "../../shared/components/ui/AIChatBot";
-import LiveActivityFeed from "../../shared/components/ui/LiveActivityFeed";
 import HeaderBar
     from "../../shared/components/navigation/Header/HeaderBar";
 import { useStore } from "@/store/useStore";
+import useEventListener from "../../shared/hooks/useEventListener";
 
 type Props = {
     children: React.ReactNode;
 };
 
-import useEventListener from "../../shared/hooks/useEventListener";
+const AIChatBot = React.lazy(() => import("../../shared/components/ui/AIChatBot"));
+const LiveActivityFeed = React.lazy(() => import("../../shared/components/ui/LiveActivityFeed"));
 
 const MainLayout = ({
     children
 }: Props) => {
     const { sidebarCollapsed } = useStore();
     const prefersReducedMotion = useReducedMotion();
+    const [showDeferredWidgets, setShowDeferredWidgets] = React.useState(false);
     const [isDesktopViewport, setIsDesktopViewport] = React.useState(() =>
         typeof window !== "undefined"
             ? window.matchMedia("(min-width: 1024px)").matches
@@ -45,6 +46,39 @@ const MainLayout = ({
         };
     }, []);
 
+    React.useEffect(() => {
+        const requestIdle = (window as Window & {
+            requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+            cancelIdleCallback?: (id: number) => void;
+        }).requestIdleCallback;
+        const cancelIdle = (window as Window & {
+            requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+            cancelIdleCallback?: (id: number) => void;
+        }).cancelIdleCallback;
+
+        let timeoutId: number | null = null;
+        let idleId: number | null = null;
+
+        const showWidgets = () => {
+            setShowDeferredWidgets(true);
+        };
+
+        if (requestIdle) {
+            idleId = requestIdle(showWidgets, { timeout: 1200 });
+        } else {
+            timeoutId = window.setTimeout(showWidgets, 700);
+        }
+
+        return () => {
+            if (idleId !== null && cancelIdle) {
+                cancelIdle(idleId);
+            }
+            if (timeoutId !== null) {
+                window.clearTimeout(timeoutId);
+            }
+        };
+    }, []);
+
     // Correct implementation of thottled mouse move with useEventListener
     const lastCall = React.useRef(0);
     const onMouseMove = React.useCallback((e: MouseEvent) => {
@@ -59,7 +93,7 @@ const MainLayout = ({
     useEventListener("mousemove", onMouseMove, window, { passive: true });
 
     return (
-        <div className="flex mesh-bg min-h-screen relative overflow-x-clip">
+        <div className="flex mesh-bg min-h-screen relative overflow-x-hidden">
             {/* Interactive Aura Background - Hidden on mobile for performance */}
             <motion.div
                 style={{
@@ -87,8 +121,13 @@ const MainLayout = ({
                     </div>
                 </div>
             </main>
-            <AIChatBot />
-            <LiveActivityFeed sidebarCollapsed={sidebarCollapsed} />
+
+            {showDeferredWidgets && (
+                <React.Suspense fallback={null}>
+                    <AIChatBot />
+                    <LiveActivityFeed sidebarCollapsed={sidebarCollapsed} />
+                </React.Suspense>
+            )}
         </div>
     );
 };

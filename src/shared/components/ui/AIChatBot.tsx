@@ -26,7 +26,12 @@ const AIChatBot = () => {
                                     <p className="text-[10px] text-white/70 font-bold uppercase tracking-widest leading-none mt-1">Online & Ready</p>
                                 </div>
                             </div>
-                            <button onClick={() => setIsOpen(false)} className="hover:bg-white/10 p-1 rounded-lg transition-colors">
+                            <button
+                                type="button"
+                                onClick={() => setIsOpen(false)}
+                                aria-label="Close AI assistant"
+                                className="hover:bg-white/10 p-1 rounded-lg transition-colors"
+                            >
                                 <X size={18} />
                             </button>
                         </div>
@@ -48,7 +53,11 @@ const AIChatBot = () => {
                                 placeholder="Ask about a ticket..."
                                 className="flex-1 bg-gray-50 border border-gray-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
                             />
-                            <button className="bg-emerald-600 text-white p-2 rounded-xl hover:bg-emerald-700 transition">
+                            <button
+                                type="button"
+                                aria-label="Send message"
+                                className="bg-emerald-600 text-white p-2 rounded-xl hover:bg-emerald-700 transition"
+                            >
                                 <Send size={18} />
                             </button>
                         </div>
@@ -60,6 +69,8 @@ const AIChatBot = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
+                type="button"
+                aria-label={isOpen ? "Close AI assistant" : "Open AI assistant"}
                 className="bg-gradient-to-br from-emerald-600 to-green-600 text-white p-3.5 sm:p-4 rounded-2xl shadow-xl shadow-emerald-200 flex items-center gap-2 sm:gap-3 font-bold relative group"
             >
                 <div className="absolute inset-0 rounded-2xl bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-500 origin-center"></div>

@@ -17,6 +17,8 @@ const FloatingSupportButton = () => {
             <motion.button
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
+                type="button"
+                aria-label="Open support"
                 className="relative bg-emerald-600 text-white p-4 rounded-full shadow-lg hover:bg-emerald-700 transition"
             >
                 <Headset size={22} />

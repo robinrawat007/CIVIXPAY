@@ -47,29 +47,42 @@ const Counter = ({
     const styles = COLOR_MAP[color] || COLOR_MAP.emerald;
 
     useEffect(() => {
-        if (isInView) {
-            const numericValue = parseInt(value.replace(/[^0-9]/g, ""));
-            const duration = 2000;
-            const startTime = performance.now();
+        if (!isInView) return;
 
-            const animate = (currentTime: number) => {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
+        const numericValue = parseInt(value.replace(/[^0-9]/g, ""), 10) || 0;
+        const shouldAnimate = !prefersReducedMotion && window.innerWidth >= 768;
 
-                // Ease out expo for a premium feel
-                const easeOutExpo = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-
-                setCount(Math.floor(easeOutExpo * numericValue));
-
-                if (progress < 1) {
-                    requestAnimationFrame(animate);
-                }
-            };
-
-            const animationFrame = requestAnimationFrame(animate);
-            return () => cancelAnimationFrame(animationFrame);
+        if (!shouldAnimate) {
+            const instantFrame = requestAnimationFrame(() => {
+                setCount(numericValue);
+            });
+            return () => cancelAnimationFrame(instantFrame);
         }
-    }, [isInView, value]);
+
+        const duration = 1200;
+        const startTime = performance.now();
+        let frameId = 0;
+        let lastPaint = 0;
+
+        const animate = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            if (currentTime - lastPaint >= 40 || progress === 1) {
+                // Ease out expo for a premium feel.
+                const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                setCount(Math.floor(eased * numericValue));
+                lastPaint = currentTime;
+            }
+
+            if (progress < 1) {
+                frameId = requestAnimationFrame(animate);
+            }
+        };
+
+        frameId = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(frameId);
+    }, [isInView, prefersReducedMotion, value]);
 
     return (
         <motion.div
