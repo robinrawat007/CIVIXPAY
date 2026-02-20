@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://civixpay.gov.in/sitemap.xml
