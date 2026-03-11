@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/store/useAuth';
 import { ShieldAlert, ArrowLeft, Loader2, CreditCard, CheckCircle2, RefreshCw } from 'lucide-react';
