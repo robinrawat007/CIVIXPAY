@@ -10,14 +10,32 @@ const BlogsSection = () => {
     const { data: blogs, isLoading, isError, refetch } = useQuery({
         queryKey: ["blogs"],
         queryFn: blogService.getBlogs,
-        staleTime: 1000 * 60 * 10, // 10 minutes
+        staleTime: 1000 * 60 * 10,
     });
 
-    if (isLoading || !blogs) return <BlogsSkeleton />;
+    // Single top-level return — avoids Vite's $1 naming collision
+    // caused by the same default import used in two separate return paths
+    return (
+        <SectionContainer id="blogs">
+            {/* Heading */}
+            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-8 sm:mb-10">
+                <div>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                        Latest Updates &amp; Blogs
+                    </h2>
+                    <p className="text-gray-500 mt-2">
+                        Stay informed with traffic and payment updates.
+                    </p>
+                </div>
+                <button className="self-start sm:self-auto text-emerald-600 font-medium hover:underline">
+                    View All →
+                </button>
+            </div>
 
-    if (isError) {
-        return (
-            <SectionContainer id="blogs">
+            {/* Blog Grid */}
+            {isLoading ? (
+                <BlogsSkeleton />
+            ) : isError ? (
                 <div className="flex flex-col items-center justify-center p-16 bg-gray-50 rounded-3xl text-center">
                     <AlertCircle size={40} className="text-gray-300 mb-3" />
                     <h3 className="text-lg font-bold text-gray-700 mb-2">Couldn&apos;t load updates</h3>
@@ -30,37 +48,13 @@ const BlogsSection = () => {
                         Try Again
                     </button>
                 </div>
-            </SectionContainer>
-        );
-    }
-
-    return (
-        <SectionContainer id="blogs">
-
-            {/* Heading */}
-            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-8 sm:mb-10">
-                <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
-                        Latest Updates &amp; Blogs
-                    </h2>
-                    <p className="text-gray-500 mt-2">
-                        Stay informed with traffic and payment updates.
-                    </p>
+            ) : (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
+                    {(blogs ?? []).map((blog) => (
+                        <BlogCard key={blog.title} {...blog} />
+                    ))}
                 </div>
-
-                <button className="self-start sm:self-auto text-emerald-600 font-medium hover:underline">
-                    View All →
-                </button>
-            </div>
-
-            {/* Blog Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
-                {blogs.map((blog) => (
-                    // Use title as stable key (unique per blog, won't change on re-renders)
-                    <BlogCard key={blog.title} {...blog} />
-                ))}
-            </div>
-
+            )}
         </SectionContainer>
     );
 };
