@@ -1,2 +1,2 @@
 // Challan Types
-export interface Challan { }
+export type Challan = Record<string, unknown>;

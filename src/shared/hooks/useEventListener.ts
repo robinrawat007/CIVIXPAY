@@ -16,7 +16,7 @@ function useEventListener<K extends keyof WindowEventMap>(
         const isSupported = element && element.addEventListener;
         if (!isSupported) return;
 
-        const eventListener = (event: any) => savedHandler.current(event);
+        const eventListener = (event: Event) => savedHandler.current(event as unknown as WindowEventMap[K]);
 
         element.addEventListener(eventName, eventListener, options);
 

@@ -49,6 +49,7 @@ const SidebarItem = React.memo(
                 <button
                     type="button"
                     onClick={handleSelect}
+                    aria-label={label}
                     className="
                         w-full
                         flex items-center gap-3

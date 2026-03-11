@@ -1,2 +1,2 @@
 // API Types
-export interface ApiResponse { }
+export type ApiResponse = Record<string, unknown>;
