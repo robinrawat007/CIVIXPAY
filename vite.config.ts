@@ -17,32 +17,32 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (!id.includes('node_modules')) return
+          // CRITICAL: Only split node_modules — never touch app source files.
+          // Splitting app components causes Rollup to alias default exports as
+          // Component$1, Component$2 etc. which breaks runtime resolution.
+          if (!id.includes('node_modules')) return undefined;
 
           if (
             id.includes('framer-motion') ||
             id.includes('motion-dom') ||
             id.includes('motion-utils')
           ) {
-            return 'vendor-framer'
+            return 'vendor-framer';
           }
 
           if (id.includes('lucide-react')) {
-            return 'vendor-icons'
+            return 'vendor-icons';
           }
 
           if (
             id.includes('react-router') ||
             id.includes('@remix-run') ||
-            id.includes('node_modules/react-dom/') ||
-            id.includes('node_modules\\react-dom\\') ||
-            id.includes('node_modules/react/') ||
-            id.includes('node_modules\\react\\') ||
-            id.includes('react/jsx-runtime') ||
-            id.includes('react/jsx-dev-runtime') ||
+            id.includes('react-dom') ||
+            id.includes('/react/') ||
+            id.includes('\\react\\') ||
             id.includes('scheduler')
           ) {
-            return 'vendor-react'
+            return 'vendor-react';
           }
         },
       },
