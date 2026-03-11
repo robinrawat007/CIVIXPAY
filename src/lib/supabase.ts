@@ -5,13 +5,14 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
     if (import.meta.env.PROD) {
-        // In production, a missing key is a hard error — throw so the app doesn't silently use a broken client
-        throw new Error(
+        // Log loudly but don't hard-throw — a throw here crashes the app
+        // before React mounts, resulting in a blank page on Netlify.
+        // Instead let the UI handle graceful degradation.
+        console.error(
             '[CivixPay] VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY is not set. ' +
-            'Add these to your environment variables.'
+            'Add these to Netlify → Site Settings → Environment Variables and redeploy.'
         );
     } else {
-        // In development, just warn so local UI work without a DB still works
         console.warn(
             '[CivixPay] Supabase env vars not set. DB calls will fail. ' +
             'Copy .env.example to .env and fill in your Supabase project keys.'
