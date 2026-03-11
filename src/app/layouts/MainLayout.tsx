@@ -11,6 +11,7 @@ type Props = {
 
 const AIChatBot = React.lazy(() => import("../../shared/components/ui/AIChatBot"));
 const LiveActivityFeed = React.lazy(() => import("../../shared/components/ui/LiveActivityFeed"));
+const AuthModal = React.lazy(() => import("../../shared/components/auth/AuthModal"));
 
 const MainLayout = ({
     children
@@ -85,6 +86,10 @@ const MainLayout = ({
                     <LiveActivityFeed sidebarCollapsed={sidebarCollapsed} />
                 </React.Suspense>
             )}
+            
+            <React.Suspense fallback={null}>
+                <AuthModal />
+            </React.Suspense>
         </div>
     );
 };

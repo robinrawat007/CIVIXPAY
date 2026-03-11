@@ -23,6 +23,9 @@ const TrustBadges = lazy(() => import("../../shared/components/sections/TrustBad
 const GovernmentLogos = lazy(() => import("../../shared/components/sections/GovernmentLogos"));
 const Footer = lazy(() => import("../../shared/components/sections/Footer"));
 
+// Pages
+const ChallanResults = lazy(() => import("../../app/pages/ChallanResults"));
+
 const SectionFallback = ({ id }: { id?: string }) => (
     <section
         id={id}
@@ -73,6 +76,20 @@ const AppRouter = () => {
                                 </Suspense>
                                 <Suspense fallback={<SectionFallback />}>
                                     <Footer />
+                                </Suspense>
+                            </MainLayout>
+                        </ErrorBoundary>
+                    }
+                />
+
+                <Route
+                    path="/challans"
+                    element={
+                        <ErrorBoundary>
+                            <MainLayout>
+                                <SEO title="Your Challans - CivixPay" description="View and pay your pending vehicle challans securely." />
+                                <Suspense fallback={<div className="h-screen w-full flex items-center justify-center bg-gray-50"><div className="animate-spin h-8 w-8 rounded-full border-4 border-emerald-500 border-t-transparent" /></div>}>
+                                    <ChallanResults />
                                 </Suspense>
                             </MainLayout>
                         </ErrorBoundary>
